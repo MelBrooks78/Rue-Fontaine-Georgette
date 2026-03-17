@@ -116,7 +116,7 @@
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: 600; color: #475569; font-size: 0.85rem; }
         input, select, textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; font-family: inherit; }
-        textarea { resize: vertical; } /* Permet d'agrandir seulement en hauteur si besoin */
+        textarea { resize: vertical; }
 
         .btn-submit {
             width: 100%;
@@ -135,18 +135,34 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* CORRECTIF MOBILE ICI */
         @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; height: auto; }
-            .book-section { height: auto; min-height: 500px; }
+            body { align-items: flex-start; } /* Permet le scroll naturel sur mobile */
+            .container { 
+                display: flex; 
+                flex-direction: column; /* Force l'ordre : Image (1) puis Formulaire (2) */
+                height: auto; 
+                margin: 20px auto;
+            }
+            .book-section { 
+                height: auto; 
+                min-height: 400px; /* Hauteur de l'image sur mobile */
+                overflow: visible;
+            }
+            .order-form {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="book-section book-info">
-        <h1>Rue Fontaine Georgette</h1>
-        <p>Le 13 janvier 2020, Jacques Morisset, médecin généraliste à Saint-Gilles-Croix-de-Vie, savoure son premier jour de retraite. L’agenda vide se remplit rapidement d’un projet inattendu&nbsp;: l’écriture d’un roman. Ce qui devait être un simple recueil d’anecdotes devient une enquête bouleversante, un voyage à travers le temps... <i>Rue Fontaine-Georgette</i> est-il le récit d’un homme qui croyait regarder en arrière, ou la preuve que certaines histoires, longtemps enfouies, n’attendent qu’un regard pour renaître&nbsp;?</p>
+    <div class="book-section">
+        <div class="book-info">
+            <h1>Rue Fontaine Georgette</h1>
+            <p>Le 13 janvier 2020, Jacques Morisset, médecin généraliste à Saint-Gilles-Croix-de-Vie, savoure son premier jour de retraite. L’agenda vide se remplit rapidement d’un projet inattendu&nbsp;: l’écriture d’un roman. Ce qui devait être un simple recueil d’anecdotes devient une enquête bouleversante, un voyage à travers le temps... <i>Rue Fontaine-Georgette</i> est-il le récit d’un homme qui croyait regarder en arrière, ou la preuve que certaines histoires, longtemps enfouies, n’attendent qu’un regard pour renaître&nbsp;?</p>
+        </div>
 
         <div class="bottom-content">
             <div class="author-section">
@@ -182,11 +198,6 @@
                         <option value="3">3 exemplaires</option>
                         <option value="4">4 exemplaires</option>
                         <option value="5">5 exemplaires</option>
-                        <option value="6">6 exemplaires</option>
-                        <option value="7">7 exemplaires</option>
-                        <option value="8">8 exemplaires</option>
-                        <option value="9">9 exemplaires</option>
-                        <option value="10">10 exemplaires</option>
                     </select>
                 </div>
                 
